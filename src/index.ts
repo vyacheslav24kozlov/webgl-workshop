@@ -10,7 +10,9 @@ import {IApplicationOptions} from "@pixi/app/lib/Application";
 
 import vertexShader from "./base.vert?raw";
 import fragmentShader from "./base.frag?raw";
-import fragmentShaderTask1 from "./edge.frag?raw";
+import fragmentEdgeShader from "./edge.frag?raw";
+import fragmentShaderTask1 from "./workshop-first/task1.frag?raw";
+import fragmentShaderTask2 from "./workshop-first/task2.frag?raw";
 import fragmentShaderTask4 from "./workshop-first/task4.frag?raw";
 
 const configApp= {
@@ -28,10 +30,11 @@ async function main() {
     await Assets.load("bunny.webp");
     await Assets.load("peach.webp");
 
-    const shader = Shader.from(vertexShader, fragmentShaderTask4, {
+    const shader = Shader.from(vertexShader, fragmentShaderTask2, {
         uSampler2: Assets.cache.get("bunny.webp") as Texture, //! Пояснить
         uTime: 0,
         uMouse: [0, 0],
+        uClick: [0, 0]
     });
 
     const geometry = new Geometry()
@@ -76,6 +79,12 @@ async function main() {
         const mouseY = event.clientY / window.innerHeight;
         shader.uniforms.uMouse = [mouseX, mouseY]; // Пример передачи данных о мыши
     });
+
+    document.addEventListener('click', (event) => {
+        const mouseX = event.clientX / window.innerWidth;
+        const mouseY = event.clientY / window.innerHeight;
+        shader.uniforms.uClick = [mouseX, mouseY]; // Пример передачи данных о мыши
+    })
 
     app.ticker.add((delta: number) => {
         shader.uniforms.uTime += delta;
