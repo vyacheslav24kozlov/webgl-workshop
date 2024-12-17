@@ -12,6 +12,10 @@ const vec3 SEPIA_R = vec3(0.393, 0.769, 0.189);
 const vec3 SEPIA_G = vec3(0.349, 0.686, 0.168);
 const vec3 SEPIA_B = vec3(0.272, 0.534, 0.131);
 
+/**float random (vec2 st) {
+    return fract(sin(dot(st.xy, vec2(12.9898,78.233)))*43758.5453123);
+}*/
+
 void main() {
     vec3 color = texture2D(uSampler2, vUvs).rgb;
 
