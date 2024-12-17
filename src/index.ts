@@ -13,6 +13,7 @@ import fragmentShader from "./base.frag?raw";
 import fragmentEdgeShader from "./edge.frag?raw";
 import fragmentShaderTask1 from "./workshop-first/task1.frag?raw";
 import fragmentShaderTask2 from "./workshop-first/task2.frag?raw";
+import fragmentShaderTask3 from "./workshop-first/task3.frag?raw";
 import fragmentShaderTask4 from "./workshop-first/task4.frag?raw";
 
 const configApp= {
@@ -30,11 +31,12 @@ async function main() {
     await Assets.load("bunny.webp");
     await Assets.load("peach.webp");
 
-    const shader = Shader.from(vertexShader, fragmentShaderTask2, {
+    const shader = Shader.from(vertexShader, fragmentShaderTask3, {
         uSampler2: Assets.cache.get("bunny.webp") as Texture, //! Пояснить
         uTime: 0,
         uMouse: [0, 0],
-        uClick: [0, 0]
+        uClick: [0, 0],
+        uToggle: false,
     });
 
     const geometry = new Geometry()
@@ -83,6 +85,7 @@ async function main() {
     document.addEventListener('click', (event) => {
         const mouseX = event.clientX / window.innerWidth;
         const mouseY = event.clientY / window.innerHeight;
+        shader.uniforms.uToggle = !shader.uniforms.uToggle;
         shader.uniforms.uClick = [mouseX, mouseY]; // Пример передачи данных о мыши
     })
 
