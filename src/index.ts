@@ -15,6 +15,7 @@ import fragmentShaderTask1 from "./workshop-first/task1.frag?raw";
 import fragmentShaderTask2 from "./workshop-first/task2.frag?raw";
 import fragmentShaderTask3 from "./workshop-first/task3.frag?raw";
 import fragmentShaderTask4 from "./workshop-first/task4.frag?raw";
+import fragmentShaderTask5 from "./workshop-first/task5.frag?raw";
 
 const configApp= {
     width: window.innerWidth,
@@ -31,7 +32,7 @@ async function main() {
     await Assets.load("bunny.webp");
     await Assets.load("peach.webp");
 
-    const shader = Shader.from(vertexShader, fragmentShaderTask3, {
+    const shader = Shader.from(vertexShader, fragmentShaderTask5, {
         uSampler2: Assets.cache.get("bunny.webp") as Texture, //! Пояснить
         uTime: 0,
         uMouse: [0, 0],
