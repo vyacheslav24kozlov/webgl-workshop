@@ -14,6 +14,7 @@ const float AMPLITUDE = 0.05;
 
 void main() {
     vec2 uv = vUvs;
-    uv.y += AMPLITUDE * sin(uv.x + uTime);
+    uv.x += AMPLITUDE * sin(uTime);
+    uv.y += AMPLITUDE * sin(uTime);
     gl_FragColor = texture2D(uSampler2, uv);
 }
