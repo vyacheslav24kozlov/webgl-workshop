@@ -90,6 +90,11 @@ async function main() {
         shader.uniforms.uClick = [mouseX, mouseY]; // Пример передачи данных о мыши
     })
 
+    window.addEventListener('resize', () => {
+        app.renderer.resize(window.innerWidth, window.innerHeight);
+        mesh.position.set(app.renderer.width / 2, app.renderer.height / 2);
+    })
+
     app.ticker.add((delta: number) => {
         shader.uniforms.uTime += delta;
     });
