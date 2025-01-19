@@ -6,7 +6,6 @@ import {
     Mesh,
     Texture,
 } from "pixi.js";
-import {IApplicationOptions} from "@pixi/app/lib/Application";
 
 import vertexShader from "./base.vert?raw";
 import fragmentShader from "./base.frag?raw";
@@ -17,17 +16,15 @@ import fragmentShaderTask3 from "./workshop-first/task3.frag?raw";
 import fragmentShaderTask4 from "./workshop-first/task4.frag?raw";
 import fragmentShaderTask5 from "./workshop-first/task5.frag?raw";
 
-const configApp= {
-    width: window.innerWidth,
-    height: window.innerHeight,
-    backgroundColor: 0x2f3136,
-    antialias: true,
-    view: document.getElementById("pixiCanvas")! as HTMLCanvasElement,
-} as IApplicationOptions
-
 async function main() {
     // Create PixiJS application
-    const app = new Application(configApp);
+    const app = new Application({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        backgroundColor: 0x2f3136,
+        antialias: true,
+        view: document.getElementById("pixiCanvas")! as HTMLCanvasElement,
+    });
 
     await Assets.load("bunny.webp");
     await Assets.load("peach.webp");
