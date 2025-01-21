@@ -16,6 +16,7 @@ import fragmentShaderTask3 from "./workshop-first/task3.frag?raw";
 import fragmentShaderTask4 from "./workshop-first/task4.frag?raw";
 import fragmentShaderTask5 from "./workshop-first/task5.frag?raw";
 import fragmentShaderTask6 from "./workshop-first/task6.frag?raw";
+import fragmentShaderTask7 from "./workshop-first/task7.frag?raw";
 
 async function main() {
     // Create PixiJS application
@@ -30,7 +31,7 @@ async function main() {
     await Assets.load("bunny.webp");
     await Assets.load("peach.webp");
 
-    const shader = Shader.from(vertexShader, fragmentShaderTask6, {
+    const shader = Shader.from(vertexShader, fragmentShaderTask7, {
         uSampler2: Assets.cache.get("bunny.webp") as Texture, //! Пояснить
         uTime: 0,
         uMouse: [0, 0],
